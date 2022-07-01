@@ -6,7 +6,12 @@ const Engineer = require('./lib/Engineer');
 
 const intern = require('./lib/Intern');
 
-//const { managerQuestions, choiceQuestion } = require('./utils/questions');
+// const {
+//   managerQuestions,
+//   engineerQuestions,
+//   internQuestions,
+//   choiceQuestion,
+// } = require('./utils/questions');
 
 const choiceQuestion = {
   message: 'What action would you like to perform next?',
@@ -188,13 +193,14 @@ const init = async () => {
 
   let inProgress = true;
 
-  // // ask manager questions first
-  // const { name, id, email, officeNumber } = await inquirer.prompt(
-  //   managerQuestions
-  // );
+  // ask manager questions first
+  const { name, id, email, officeNumber } = await inquirer.prompt(
+    managerQuestions
+  );
 
   // create a new manager instance and pass it the values that you just got from inquirer
-  // const manager = new Manager(name, id, email, officeNumber);
+
+  const manager = new Manager(name, id, email, officeNumber);
 
   // start a while loop with a condition
   while (inProgress) {
@@ -213,6 +219,11 @@ const init = async () => {
     if (action == 'intern') {
       const intern = await inquirer.prompt(internQuestions);
       interns.push(intern);
+    }
+
+    if (action == 'engineer') {
+      const engineer = await inquirer.prompt(engineerQuestions);
+      engineers.push(engineer);
     }
   }
   // generate the HTML with cards using the data that we got from the user
