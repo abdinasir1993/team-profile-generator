@@ -26,27 +26,29 @@ const generateHTML = (manager, engineers, interns) => {
       })
       .join('');
   };
+  console.log(interns);
 
   const generateInternCard = (interns) => {
     return interns
       .map((intern) => {
-        `<div class="card" style="width: 18rem">
-  <div class="card-body">
-    <h3 class="card-title">${intern.name}</h3>
-    <h5 class="card-title">intern</h5>
+        return ` <div class="card" style="width: 18rem">
+      <div class="card-body">
+        <h3 class="card-title">${intern.name}</h3>
+        <h5 class="card-title">intern</h5>
 
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">${intern.id}</li>
-      <li>
-      <a href="mailto:${intern.email}">${intern.email}</a>
-    </li>
-      <li class="list-group-item">school name: ${intern.school}</li>
-    </ul>
-  </div>
-</div>`;
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">ID${intern.id}</li>
+          <li class="list-group-item">email${intern.email}</li>
+         
+          <li class="list-group-item">school:${intern.school}</li>
+        </ul>
+      </div>
+    </div>`;
       })
       .join('');
   };
+
+  console.log(generateInternCard);
   return `<!DOCTYPE html>
   <html lang="en">
     <head>
@@ -94,14 +96,15 @@ const generateHTML = (manager, engineers, interns) => {
     
   
       <!-- engineer -->
-  <div>
+  
       <nav class="navbar bg-primary">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">intern</a>
         </div>
-      </nav>  
+      </nav> 
+     
    ${generateInternCard(interns)}
-   </div>
+   
       <!-- intern -->
   
       <script
@@ -226,8 +229,8 @@ const engineerQuestions = [
     message: 'please enter the github id of the engineer',
     type: 'input',
     name: 'githubId',
-    validate: (enterefGithubId) => {
-      if (enterefGithubId) {
+    validate: (enteredGithubId) => {
+      if (enteredGithubId) {
         return true;
       } else {
         return 'please type a github id to continue';
@@ -312,7 +315,6 @@ const init = async () => {
     if (action == 'quit') {
       console.log('Thank you');
       inProgress = false;
-      console.log(interns);
     }
 
     // add engineers and interns based on user's selection
