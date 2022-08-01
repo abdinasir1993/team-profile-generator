@@ -7,37 +7,46 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const fs = require('fs');
 const generateHTML = (manager, engineers, interns) => {
-  const generateEngineerCard = engineers
-    .map((engineer) => {
-      return `<div class="card" style="width: 18rem">
+  const generateEngineerCard = (engineers) => {
+    return engineers
+      .map((engineer) => {
+        return `<div class="card" style="width: 18rem">
   <div class="card-body">
     <h5 class="card-title">engineer</h5>
 
     <ul class="list-group list-group-flush">
       <li class="list-group-item">${engineer.id}</li>
-      <li class="list-group-item">email:${engineer.email}</li>
+      <li>
+      <a href="mailto:${engineer.email}">${engineer.email}</a>
+    </li>
+     
     </ul>
   </div>
 </div>`;
-    })
-    .join('');
+      })
+      .join('');
+  };
 
-  const generateInternCard = interns
-    .map((intern) => {
-      `<div class="card" style="width: 18rem">
+  const generateInternCard = (interns) => {
+    return interns
+      .map((intern) => {
+        `<div class="card" style="width: 18rem">
   <div class="card-body">
     <h3 class="card-title">${intern.name}</h3>
     <h5 class="card-title">intern</h5>
 
     <ul class="list-group list-group-flush">
       <li class="list-group-item">${intern.id}</li>
-      <li class="list-group-item">email: ${intern.email}</li>
+      <li>
+      <a href="mailto:${intern.email}">${intern.email}</a>
+    </li>
       <li class="list-group-item">school name: ${intern.school}</li>
     </ul>
   </div>
 </div>`;
-    })
-    .join('');
+      })
+      .join('');
+  };
   return `<!DOCTYPE html>
   <html lang="en">
     <head>
@@ -67,7 +76,9 @@ const generateHTML = (manager, engineers, interns) => {
 
   <ul class="list-group list-group-flush">
     <li class="list-group-item">ID:123</li>
-    <li class="list-group-item">${manager.email}</li>
+    <li>
+    <a href="mailto:${manager.email}">${manager.email}</a>
+  </li>
     <li class="list-group-item">office number:${manager.officeNumber}</li>
   </ul>
 </div>
@@ -79,7 +90,7 @@ const generateHTML = (manager, engineers, interns) => {
           <a class="navbar-brand" href="#">engineer</a>
         </div>
       </nav>
-  ${generateEngineerCard}
+  ${generateEngineerCard(engineers)}
     
   
       <!-- engineer -->
@@ -89,7 +100,7 @@ const generateHTML = (manager, engineers, interns) => {
           <a class="navbar-brand" href="#">intern</a>
         </div>
       </nav>  
-   ${generateInternCard}
+   ${generateInternCard(interns)}
    </div>
       <!-- intern -->
   
