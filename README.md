@@ -42,7 +42,7 @@ npm run test
 
 video walkthrough of the application is below
 
-[link](https://drive.google.com/file/d/1rzeOYiM37I2fTc-ukQX0s7XpvAujs4pA/view)
+[link](https://drive.google.com/file/d/1DnyaoThHWYtnAduth69y3nCnjxzSvosQ/view)
 
 ## Questions
 
